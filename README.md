@@ -55,6 +55,10 @@ We suggest that you begin by typing:
 - Account Factory
   - [0x73985d4e6f8cc92a338ee9e6a13be607680cac5d](https://mumbai.polygonscan.com/address/0x73985d4e6f8cc92a338ee9e6a13be607680cac5d)
 
+### 作成したスマートウォレットのアドレス
+
+[0x1227dae5b0d8b5dfd8a8026e5768577a8c5bf566](https://mumbai.polygonscan.com/address/0x1227dae5b0d8b5dfd8a8026e5768577a8c5bf566)
+
 ### 参考文献
 
 1. [Youtube - How to Build the Ultimate Web3 Mobile App (2023)](https://www.youtube.com/watch?v=73YzK0SLfbQ)
