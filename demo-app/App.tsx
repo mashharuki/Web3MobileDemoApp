@@ -1,38 +1,36 @@
 import {
   ConnectWallet,
   embeddedWallet,
-  localWallet,
-  metamaskWallet,
-  rainbowWallet,
-  ThirdwebProvider,
-  trustWallet,
-  walletConnect,
+  smartWallet,
+  ThirdwebProvider
 } from "@thirdweb-dev/react-native";
 import React from "react";
 import { StyleSheet, Text, useColorScheme, View } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
+import { ACCOUNT_FACTORY_CONTRACT_ADDRESS } from "./shared/constants";
 
+// スマートウォレット用の設定
+const smartWalletConfig = {
+  factoryAddress: ACCOUNT_FACTORY_CONTRACT_ADDRESS,
+  gasless: true
+}
+
+/**
+ * App Component
+ * @returns 
+ */
 const App = () => {
   return (
     <ThirdwebProvider
       activeChain="mumbai"
       clientId={process.env.EXPO_PUBLIC_TW_CLIENT_ID}
       supportedWallets={[
-        metamaskWallet({
-          recommended: true,
-        }),
-        rainbowWallet(),
-        walletConnect({
-          recommended: true,
-        }),
-        embeddedWallet({
+        smartWallet(embeddedWallet({
           auth: {
-            options: ["email", "google"],
+            options: ["email", "google", "facebook", "apple"],
             redirectUrl: "rnstarter://",
           },
-        }),
-        trustWallet(),
-        localWallet(),
+        }), smartWalletConfig),
       ]}
     >
       <AppInner />
@@ -40,6 +38,10 @@ const App = () => {
   );
 };
 
+/**
+ * AppInner Component
+ * @returns 
+ */
 const AppInner = () => {
   const isDarkMode = useColorScheme() === "dark";
 
