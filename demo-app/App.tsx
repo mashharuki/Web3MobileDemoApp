@@ -2,12 +2,27 @@ import {
   ConnectWallet,
   embeddedWallet,
   smartWallet,
-  ThirdwebProvider
+  ThirdwebProvider,
+  useAddress
 } from "@thirdweb-dev/react-native";
 import React from "react";
-import { StyleSheet, Text, useColorScheme, View } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import { StyleSheet, useColorScheme, View } from "react-native";
 import { ACCOUNT_FACTORY_CONTRACT_ADDRESS } from "./shared/constants";
+
+const styles = StyleSheet.create({
+  view: {
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+});
 
 // スマートウォレット用の設定
 const smartWalletConfig = {
@@ -45,32 +60,21 @@ const App = () => {
 const AppInner = () => {
   const isDarkMode = useColorScheme() === "dark";
 
-  const textStyles = {
-    color: isDarkMode ? Colors.white : Colors.black,
-    ...styles.heading,
-  };
+  const address = useAddress();
 
   return (
-    <View style={styles.view}>
-      <Text style={textStyles}>Web3 Mobile Demo App</Text>
-      <ConnectWallet />
-    </View>
+    <>
+      {!address? (
+        <View style={styles.view}>
+          <ConnectWallet buttonTitle="Sign In"/>
+        </View>
+      ) : (
+        <View>
+          
+        </View>
+      )}
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  view: {
-    height: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    alignContent: "center",
-  },
-  heading: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-  },
-});
 
 export default App;
