@@ -39,6 +39,14 @@ We suggest that you begin by typing:
 
   cd demo-app
 
+### このアプリケーションのためにデプロイしたコントラクト
+
+いずれもMumbaiにデプロイ
+
+- ERC20Token
+  - [0x27c89ec21b8C72875EcD1117396d56D1046f7B9E](https://mumbai.polygonscan.com/address/0x27c89ec21b8C72875EcD1117396d56D1046f7B9E)
+- NFT
+  - []()
 
 ### 参考文献
 1. [Youtube - How to Build the Ultimate Web3 Mobile App (2023)](https://www.youtube.com/watch?v=73YzK0SLfbQ)
