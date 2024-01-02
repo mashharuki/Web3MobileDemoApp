@@ -30,15 +30,19 @@ Done in 88.67s.
 Success! Created demo-app at /workspace/Web3MobileDemoApp/demo-app
 Inside that directory, you can run several commands:
 
-yarn android
+`yarn android`
 Runs your app on an Android emulator or device.
 
-yarn ios
+`yarn ios`
 Runs your app on an iOS emulator or device.
 
 We suggest that you begin by typing:
 
-cd demo-app
+`yarn ios`
+
+## pod install がうまく行かないとき
+
+`ios`フォルダ内の`Pods`フォルダと`Podfile.lock`ファイルを削除して再度`pod install`をトライしてみると良い。
 
 ### このアプリケーションのためにデプロイしたコントラクト
 
@@ -53,4 +57,4 @@ cd demo-app
 
 1. [Youtube - How to Build the Ultimate Web3 Mobile App (2023)](https://www.youtube.com/watch?v=73YzK0SLfbQ)
 2. [thirdweb React Native SDK](https://portal.thirdweb.com/react-native?ref=blog.thirdweb.com)
-3. []()
+3. [Web3's iPhone Moment](https://newsletter.thirdweb.com/p/web3-iphone-moment-mobile-sdk-launch)
