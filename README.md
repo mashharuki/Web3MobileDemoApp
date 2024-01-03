@@ -2,6 +2,10 @@
 
 モバイル向け Web3 アプリケーション開発用リポジトリです。
 
+## 起動した画面例
+
+![](./assets/3.png)
+
 ## ThirdWeb CLI によるテンプレプロジェクト作成方法
 
 ```bash
@@ -50,8 +54,10 @@ We suggest that you begin by typing:
 
 - ERC20Token
   - [0x27c89ec21b8C72875EcD1117396d56D1046f7B9E](https://mumbai.polygonscan.com/address/0x27c89ec21b8C72875EcD1117396d56D1046f7B9E)
-- NFT
+- NFT(ERC721)
   - [0x715b3C84Eb0ae82F71D2441Fc041bfCDB3a46AB3](https://mumbai.polygonscan.com/address/0x715b3C84Eb0ae82F71D2441Fc041bfCDB3a46AB3)
+- NFT(ERC1155)
+  - [0xFf78AD78350a29Fb67642852aEC2db34C32d605b](https://mumbai.polygonscan.com/address/0xFf78AD78350a29Fb67642852aEC2db34C32d605b)
 - Account Factory
   - [0x73985d4e6f8cc92a338ee9e6a13be607680cac5d](https://mumbai.polygonscan.com/address/0x73985d4e6f8cc92a338ee9e6a13be607680cac5d)
 

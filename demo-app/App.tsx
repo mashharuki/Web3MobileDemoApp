@@ -3,11 +3,15 @@ import {
   embeddedWallet,
   smartWallet,
   ThirdwebProvider,
-  useAddress
+  useAddress,
+  useContract,
+  useNFT,
+  Web3Button,
 } from "@thirdweb-dev/react-native";
 import React from "react";
-import { StyleSheet, useColorScheme, View } from "react-native";
-import { ACCOUNT_FACTORY_CONTRACT_ADDRESS } from "./shared/constants";
+import { Image, StyleSheet, useColorScheme, View } from "react-native";
+import Loading from "./components/Loading";
+import { ACCOUNT_FACTORY_CONTRACT_ADDRESS, NFT_CONTRACT_ADDRESS } from "./shared/constants";
 
 const styles = StyleSheet.create({
   view: {
@@ -22,6 +26,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 20,
   },
+  nftImage: {
+    width: 200, 
+    height: 200,
+    margin: 5
+  }
 });
 
 // スマートウォレット用の設定
@@ -61,17 +70,43 @@ const AppInner = () => {
   const isDarkMode = useColorScheme() === "dark";
 
   const address = useAddress();
-
+  const {  
+    data,
+    error,
+    isLoading,
+    contract
+  } = useContract(NFT_CONTRACT_ADDRESS);
+  const { data: nft } = useNFT(contract, 0);
+ 
   return (
     <>
-      {!address? (
-        <View style={styles.view}>
-          <ConnectWallet buttonTitle="Sign In"/>
-        </View>
+      {isLoading ? (
+        <Loading />
       ) : (
-        <View>
-          
-        </View>
+        <>
+          {!address? (
+            <View style={styles.view}>
+              <ConnectWallet buttonTitle="Sign In"/>
+            </View>
+          ) : (
+            <View style={styles.view}>
+              {nft != undefined && (
+                <Image 
+                  source={{
+                    uri: nft.metadata.image,
+                  }} 
+                  style={styles.nftImage}
+                />
+              )}
+              <Web3Button
+                contractAddress={NFT_CONTRACT_ADDRESS}
+                action={(contract) => contract.erc1155.claim(0, 1)}
+              >
+                Claim NFT
+              </Web3Button>
+            </View>
+          )}
+        </>
       )}
     </>
   );
