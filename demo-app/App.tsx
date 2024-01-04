@@ -5,13 +5,16 @@ import {
   ThirdwebProvider,
   useAddress,
   useContract,
+  useDisconnect,
   useNFT,
+  useNFTBalance,
+  useTokenBalance,
   Web3Button,
 } from "@thirdweb-dev/react-native";
 import React from "react";
-import { Image, StyleSheet, useColorScheme, View } from "react-native";
+import { Button, Image, StyleSheet, Text, useColorScheme, View } from "react-native";
 import Loading from "./components/Loading";
-import { ACCOUNT_FACTORY_CONTRACT_ADDRESS, NFT_CONTRACT_ADDRESS } from "./shared/constants";
+import { ACCOUNT_FACTORY_CONTRACT_ADDRESS, NFT_CONTRACT_ADDRESS, TOKEN_CONTRACT_ADDRESS } from "./shared/constants";
 
 const styles = StyleSheet.create({
   view: {
@@ -70,13 +73,23 @@ const AppInner = () => {
   const isDarkMode = useColorScheme() === "dark";
 
   const address = useAddress();
+  const disconnect = useDisconnect();
   const {  
     data,
     error,
     isLoading,
     contract
   } = useContract(NFT_CONTRACT_ADDRESS);
+  const { 
+    contract: tokenContract
+  } = useContract(TOKEN_CONTRACT_ADDRESS);
   const { data: nft } = useNFT(contract, 0);
+  const {
+    data: tokenBalance
+  } = useTokenBalance(tokenContract, address);
+  const {
+    data: nftBalance
+  } = useNFTBalance(contract, address, 0)
  
   return (
     <>
@@ -104,6 +117,33 @@ const AppInner = () => {
               >
                 Claim NFT
               </Web3Button>
+              <Web3Button
+                contractAddress={TOKEN_CONTRACT_ADDRESS}
+                action={(contract) => contract.erc20.claim(10)}
+              >
+                Claim Test Token
+              </Web3Button>
+              <ConnectWallet />
+              <Text>
+                Your NFT Balance:
+              </Text>
+              {nftBalance != undefined && (
+                <Text>
+                  {nftBalance?.toString()}
+                </Text>
+              )}
+              <Text>
+                Your ERC20 Token:
+              </Text>
+              {tokenBalance != undefined && (
+                <Text>
+                  {tokenBalance.displayValue}
+                </Text>
+              )}
+              <Button
+                title="Sign Out"
+                onPress={disconnect}
+              />
             </View>
           )}
         </>
