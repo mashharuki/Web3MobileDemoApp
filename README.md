@@ -4,7 +4,7 @@
 
 ## 起動した画面例
 
-![](./assets/3.png)
+![](./assets/4.png)
 
 ## ThirdWeb CLI によるテンプレプロジェクト作成方法
 
